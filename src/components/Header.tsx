@@ -41,16 +41,15 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
   ];
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-6'
-      }`}
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-6'
+        }`}
     >
       <div className="relative w-full">
         {/* Navbar Content */}
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             className="text-xl md:text-2xl font-bold text-teal-900 dark:text-teal-400 transition-colors duration-300"
             onClick={(e) => {
               e.preventDefault();
@@ -65,13 +64,12 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
             <ul className="flex space-x-8">
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <a 
+                  <a
                     href={`#${link.id}`}
-                    className={`text-sm font-medium transition-all duration-300 hover:text-amber-500 relative ${
-                      activeSection === link.id 
-                        ? 'text-amber-500' 
+                    className={`text-sm font-medium transition-all duration-300 hover:text-amber-500 relative ${activeSection === link.id
+                        ? 'text-amber-500'
                         : 'text-slate-800 dark:text-slate-200'
-                    }`}
+                      }`}
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToSection(link.id);
@@ -85,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
                 </li>
               ))}
             </ul>
-            <button 
+            <button
               aria-label="Toggle dark mode"
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
               onClick={toggleDarkMode}
@@ -96,14 +94,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
 
           {/* Mobile Toggle */}
           <div className="flex items-center space-x-4 md:hidden">
-            <button 
+            <button
               aria-label="Toggle dark mode"
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
               onClick={toggleDarkMode}
             >
               {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
-            <button 
+            <button
               aria-label="Toggle mobile menu"
               className="p-2 text-slate-800 dark:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -114,30 +112,35 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
         </div>
 
         {/* Mobile Menu (OUTSIDE .container) */}
-        {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 w-full bg-white dark:bg-slate-900 shadow-lg py-4 px-4 sm:px-6 md:hidden z-40">
-            <ul className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <li key={link.id}>
-                  <a 
-                    href={`#${link.id}`}
-                    className={`block py-2 text-base font-medium transition-colors duration-300 ${
-                      activeSection === link.id 
-                        ? 'text-amber-500' 
-                        : 'text-slate-800 dark:text-slate-200'
+        {/* Mobile Menu */}
+        <div
+          className={`absolute top-full left-0 right-0 w-full bg-white dark:bg-slate-900 shadow-lg px-4 sm:px-6 md:hidden z-40 transition-all duration-300 overflow-hidden ${mobileMenuOpen
+              ? 'max-h-screen opacity-100 scale-y-100 py-4'
+              : 'max-h-0 opacity-0 scale-y-95 py-0 pointer-events-none'
+            }`}
+          style={{ transformOrigin: 'top' }}
+        >
+          <ul className="flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  className={`block py-2 text-base font-medium transition-colors duration-300 ${activeSection === link.id
+                      ? 'text-amber-500'
+                      : 'text-slate-800 dark:text-slate-200'
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.id);
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.id);
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
     </header>
   );
