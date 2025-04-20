@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl">
               <img 
-                src="https://images.pexels.com/photos/574070/pexels-photo-574070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                src="/image.jpg" 
                 alt="Muhammad Abdullah" 
                 className="w-full h-full object-cover"
               />
