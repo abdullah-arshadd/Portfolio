@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 animate-slide-right" style={{animationDelay: '200ms'}}>
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 sm:p-8 w-full max-w-full overflow-hidden animate-slide-left">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Contact Information</h3>
             
             <div className="space-y-6">
@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
                     href="mailto:example@example.com" 
                     className="text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-300"
                   >
-                    muhammad.abdullah@example.com
+                    abd@gmail.com
                   </a>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 animate-slide-left" style={{animationDelay: '400ms'}}>
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 sm:p-8 w-full max-w-full overflow-hidden animate-slide-left">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Send a Message</h3>
             
             {submitSuccess && (
