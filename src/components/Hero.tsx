@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { ArrowDown, Github, Linkedin, FileText } from 'lucide-react';
+import { ArrowDown, Github, Linkedin } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
           
           <div className="mt-8 flex items-center space-x-4">
             <a 
-              href="https://github.com" 
+              href="https://github.com/abdullah-arshadd" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors duration-300"
@@ -68,20 +68,13 @@ const Hero: React.FC = () => {
               <Github size={24} />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/mabdullahhh/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors duration-300"
               aria-label="LinkedIn"
             >
               <Linkedin size={24} />
-            </a>
-            <a 
-              href="#" 
-              className="text-slate-700 hover:text-teal-600 dark:text-slate-300 dark:hover:text-teal-400 transition-colors duration-300"
-              aria-label="Resume"
-            >
-              <FileText size={24} />
             </a>
           </div>
         </div>
