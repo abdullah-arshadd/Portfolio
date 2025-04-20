@@ -152,7 +152,7 @@ const Projects: React.FC = () => {
 
         <div className="text-center mt-12">
           <a
-            href="https://github.com"
+            href="https://github.com/abdullah-arshadd"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-slate-800 dark:bg-slate-700 text-white rounded-lg transition-colors duration-300 hover:bg-slate-900 dark:hover:bg-slate-600"
