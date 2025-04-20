@@ -20,6 +20,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -42,73 +46,76 @@ const Header: React.FC<HeaderProps> = ({ activeSection, darkMode, toggleDarkMode
         scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <a 
-          href="#home" 
-          className="text-xl md:text-2xl font-bold text-teal-900 dark:text-teal-400 transition-colors duration-300"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('home');
-          }}
-        >
-          Abdullah<span className="text-amber-500">.</span>
-        </a>
+      <div className="relative w-full">
+        {/* Navbar Content */}
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <a 
+            href="#home" 
+            className="text-xl md:text-2xl font-bold text-teal-900 dark:text-teal-400 transition-colors duration-300"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+          >
+            Abdullah<span className="text-amber-500">.</span>
+          </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8">
-            {navLinks.map((link) => (
-              <li key={link.id}>
-                <a 
-                  href={`#${link.id}`}
-                  className={`text-sm font-medium transition-all duration-300 hover:text-amber-500 relative ${
-                    activeSection === link.id 
-                      ? 'text-amber-500' 
-                      : 'text-slate-800 dark:text-slate-200'
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.id);
-                  }}
-                >
-                  {link.label}
-                  {activeSection === link.id && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-500 rounded-full"></span>
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <button 
-            aria-label="Toggle dark mode"
-            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
-            onClick={toggleDarkMode}
-          >
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <ul className="flex space-x-8">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <a 
+                    href={`#${link.id}`}
+                    className={`text-sm font-medium transition-all duration-300 hover:text-amber-500 relative ${
+                      activeSection === link.id 
+                        ? 'text-amber-500' 
+                        : 'text-slate-800 dark:text-slate-200'
+                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }}
+                  >
+                    {link.label}
+                    {activeSection === link.id && (
+                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-500 rounded-full"></span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <button 
+              aria-label="Toggle dark mode"
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </nav>
 
-        {/* Mobile Navigation Toggle */}
-        <div className="flex items-center space-x-4 md:hidden">
-          <button 
-            aria-label="Toggle dark mode"
-            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
-            onClick={toggleDarkMode}
-          >
-            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          <button 
-            aria-label="Toggle mobile menu"
-            className="p-2 text-slate-800 dark:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Toggle */}
+          <div className="flex items-center space-x-4 md:hidden">
+            <button 
+              aria-label="Toggle dark mode"
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors duration-300"
+              onClick={toggleDarkMode}
+            >
+              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button 
+              aria-label="Toggle mobile menu"
+              className="p-2 text-slate-800 dark:text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (OUTSIDE .container) */}
         {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-white dark:bg-slate-900 shadow-lg py-4 px-6 md:hidden">
+          <div className="absolute top-full left-0 right-0 w-full bg-white dark:bg-slate-900 shadow-lg py-4 px-4 sm:px-6 md:hidden z-40">
             <ul className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <li key={link.id}>
